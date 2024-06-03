@@ -1,17 +1,47 @@
-// Update this page (the content is just a fallback if you fail and example)
-// Use chakra-ui
-import { Container, Text, VStack } from "@chakra-ui/react";
-
-// Example of using react-icons
-// import { FaRocket } from "react-icons/fa";
-// <IconButton aria-label="Add" icon={<FaRocket />} size="lg" />; // IconButton would also have to be imported from chakra
+import { Container, VStack, Text, Box, Input, Button, Flex, Heading } from "@chakra-ui/react";
+import { useState } from "react";
 
 const Index = () => {
+  const [websiteType, setWebsiteType] = useState("");
+
+  const handleInputChange = (e) => {
+    setWebsiteType(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    alert(`Website type selected: ${websiteType}`);
+  };
+
   return (
-    <Container centerContent maxW="container.md" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-      <VStack spacing={4}>
-        <Text fontSize="2xl">Your Blank Canvas</Text>
-        <Text>Chat with the agent to start making edits.</Text>
+    <Container maxW="container.xl" p={4}>
+      <Flex as="nav" bg="blue.500" color="white" p={4} justifyContent="space-between" alignItems="center">
+        <Heading size="lg">AutoWebBuilder</Heading>
+        <Box>
+          <Button variant="ghost" colorScheme="whiteAlpha" mr={4}>Home</Button>
+          <Button variant="ghost" colorScheme="whiteAlpha">About</Button>
+        </Box>
+      </Flex>
+      <VStack spacing={8} mt={10} align="stretch">
+        <Box textAlign="center">
+          <Heading>Welcome to AutoWebBuilder</Heading>
+          <Text fontSize="lg" mt={4}>Create your website effortlessly. Just tell us what you need!</Text>
+        </Box>
+        <Box>
+          <Text fontSize="md" mb={2}>What type of website do you need?</Text>
+          <Input 
+            placeholder="e.g., Portfolio, E-commerce, Blog" 
+            value={websiteType} 
+            onChange={handleInputChange} 
+            size="lg"
+          />
+          <Button 
+            colorScheme="blue" 
+            mt={4} 
+            onClick={handleSubmit}
+          >
+            Submit
+          </Button>
+        </Box>
       </VStack>
     </Container>
   );
